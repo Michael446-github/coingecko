@@ -1,14 +1,12 @@
 """
 Services, utilities, helpers for API
 """
-from typing import Any
-
 import requests
 
 
 class Helper:
     @staticmethod
-    def __check_bools(params: dict[str, Any]):
+    def __check_bools(params: dict):
         """
         Convert 'True' to 'true' and 'False' to 'false'
         :param params: dictionary of parameters
@@ -21,7 +19,7 @@ class Helper:
 
         return params
 
-    def parse_params(self, params: dict[str, Any]):
+    def parse_params(self, params: dict):
         """
         Generate a string of parameters to add to url
         :param params: dictionary of GET parameters
@@ -44,6 +42,6 @@ class ApiClient:
 
     def get(self, route: str, **params) -> dict:
         url = f"{self.BASE_URL}{route}{self.helper.parse_params(params)}"
+        print(url)
         res = requests.get(url)
-
         return res.json()

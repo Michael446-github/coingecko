@@ -5,14 +5,11 @@ import os
 
 from coingecko.utils import ApiClient
 
-os.environ["BASE_URL"] = "https://api.coingecko.com/api/v3"
-
-
 class Simple:
     def __init__(self):
         self.client = ApiClient(os.environ["BASE_URL"] + "/simple")
 
-    def price(self, ids: str, vs_currencies: str, **params) -> dict[str, dict]:
+    def price(self, ids: str, vs_currencies: str, **params) -> dict:
         from_to = {"ids": ids, "vs_currencies": vs_currencies}
         params = {**from_to, **params}
 
